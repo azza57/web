@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012. 7. 9 ???? 11:01:47 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+ <class name="com.myproject.hibernate.Member" table="cm_mb_member">
+  <id name="user_pid">
+   <column name="user_pid" not-null="true" sql-type="INTEGER"/>
+   <generator class="native"/>
+  </id>
+  <property generated="never" lazy="false" name="user_id" type="java.lang.String">
+   <column name="user_id" not-null="true" sql-type="VARCHAR" unique="true"/>
+  </property>
+  <property generated="never" lazy="false" name="user_pwd" type="java.lang.String">
+   <column name="user_pwd" not-null="true" sql-type="VARCHAR"/>
+  </property>
+  <property generated="never" lazy="false" name="user_nm" type="java.lang.String">
+   <column name="user_nm" not-null="true" sql-type="VARCHAR"/>
+  </property>
+  <one-to-one cascade="all" class="com.myproject.hibernate.MemberDetail" name="memberDetail"/>
+  <list name="loginHistorys" inverse="true">
+   <key column="user_pid" not-null="true"/>
+   <index/>
+   <one-to-many class="com.myproject.hibernate.MemberLoginHistory"/>
+  </list>
+ </class>
+</hibernate-mapping>

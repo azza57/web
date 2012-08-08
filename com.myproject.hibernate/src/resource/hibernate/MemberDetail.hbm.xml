@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012. 7. 16 ???? 5:00:14 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+ <class name="com.myproject.hibernate.MemberDetail" table="cm_mb_member_detail">
+  <id column="user_fid" name="user_fid" type="int">
+   <generator class="foreign">
+    <param name="property">member</param>
+   </generator>
+  </id>
+  <property generated="never" lazy="false" name="regist_no" type="java.lang.String">
+   <column name="regist_no"/>
+  </property>
+  <property generated="never" lazy="false" name="business_no" type="java.lang.String">
+   <column name="business_no"/>
+  </property>
+  <property generated="never" lazy="false" name="reg_dt" type="java.util.Date">
+   <column default="now()" name="reg_dt" sql-type="TIMESTAMP"/>
+  </property>
+  <one-to-one class="com.myproject.hibernate.Member" constrained="true" name="member"/>
+ </class>
+</hibernate-mapping>

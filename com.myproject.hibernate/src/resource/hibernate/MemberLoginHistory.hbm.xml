@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012. 7. 17 ???? 6:39:09 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+ <class name="com.myproject.hibernate.MemberLoginHistory" table="cm_mb_login_history">
+  <id name="user_fid" type="int">
+   <column name="user_fid"/>
+   <generator class="foreign">
+   	<param name="property">member</param>
+   </generator>
+  </id>
+  <property generated="never" lazy="false" name="login_dt" type="java.util.Date">
+   <column name="login_dt"/>
+  </property>
+  <many-to-one class="com.myproject.hibernate.Member" name="member">
+   <column name="user_pid"/>
+  </many-to-one>
+ </class>
+</hibernate-mapping>

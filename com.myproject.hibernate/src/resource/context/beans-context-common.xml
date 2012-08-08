@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<!-- *************************************************************
+	 ****  URL Handler Mapping
+ 	 ************************************************************* -->
+ 	 <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"
+		p:alwaysUseFullPath="false" p:order="0">
+		<property name="mappings">
+			<props>
+				<prop key="/main.do">mainController</prop>
+				<prop key="/addmember.do">mainController</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- *************************************************************
+	 ****  ViewResolver Mapping 
+ 	 ************************************************************* -->	
+	<!-- InternalResourceViewResolver -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+	
+	<!-- *************************************************************
+	 ****  Controller 
+ 	 ************************************************************* -->	
+	
+	<!-- bean id="mainController" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="main"/>
+	</bean-->
+	
+	<bean id="mainController" class="com.myproject.hibernate.MainController">
+		<property name="mainDao" ref="mainDao"/>
+	</bean>
+	
+	<bean id="mainDao" class="com.myproject.hibernate.MainDao">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<!-- *************************************************************
+	 ****  Controller Method 
+ 	 ************************************************************* -->
+ 	 
+ 	<bean id="defaultMethodNameResolver" class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+ 		<property name="paramName" value="cmd"/>
+ 	</bean>
+ 	 
+ 	 
+ 	<!-- *************************************************************
+	 ****  Controller Method 
+ 	 ************************************************************* --> 
+	<!-- 
+ 		로그인 체크 인터셉터 
+ 	
+	<bean id="loginInterceptor" class="kr.co.allmanage.interceptor.LoginInterceptor" />
+	-->	 
+	
+		
+</beans>
